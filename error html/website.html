@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet holati</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: white;
+            color: green;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s;
+        }
+
+        /* Navbar dizayni */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            color: black;
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 10;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .navbar nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: black;
+            margin: 0 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            color: green;
+        }
+
+        .navbar .button {
+            background-color: green;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .navbar .button:hover {
+            background-color: darkgreen;
+        }
+
+        /* Offline holatdagi xabar */
+        .offline-message {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: black;
+            color: green;
+            text-align: center;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .offline-message h1 {
+            font-size: 70px;
+            margin: 20px 0;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        .offline-message .p {
+            font-size: 34px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .offline-message .p2 {
+            font-size: 20px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .offline-message img {
+            width: 100px;
+            height: 100px;
+        }
+
+        /* Mobil uchun responsive dizayn */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+            }
+
+            .navbar h1 {
+                font-size: 24px;
+            }
+
+            .navbar nav {
+                margin-top: 10px;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .navbar a {
+                margin: 10px 0;
+                font-size: 16px;
+            }
+
+            .offline-message h1 {
+                font-size: 50px;
+            }
+
+            .offline-message .p {
+                font-size: 28px;
+            }
+
+            .offline-message .p2 {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar h1 {
+                font-size: 20px;
+            }
+
+            .navbar a {
+                font-size: 14px;
+            }
+
+            .offline-message h1 {
+                font-size: 40px;
+            }
+
+            .offline-message .p {
+                font-size: 24px;
+            }
+
+            .offline-message .p2 {
+                font-size: 14px;
+            }
+        }
+
+    </style>
+    <script>
+        function checkOnlineStatus() {
+            if (!navigator.onLine) {
+                document.body.style.backgroundColor = 'black';
+                document.getElementById('offlineMessage').style.display = 'flex';
+            } else {
+                document.body.style.backgroundColor = 'white';
+                document.getElementById('offlineMessage').style.display = 'none';
+            }
+        }
+
+        // Sayt yuklanganda internet holatini tekshirish
+        window.onload = checkOnlineStatus;
+
+        // Internet uzulganda offline xabarini ko'rsatish
+        window.addEventListener('offline', checkOnlineStatus);
+
+        // Internet qaytsa holatni qaytarish
+        window.addEventListener('online', checkOnlineStatus);
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <h1>Ridzhan</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+        </nav>
+        <button class="button">Get Started</button>
+    </div>
+
+    <!-- Offline xabar -->
+    <div id="offlineMessage" class="offline-message">
+        <h1>404</h1>
+        <p class="p">Internet uzuldi</p>
+        <p class="p2">
+            internetingizda qanaqadur muammo borga oxshaydi iltimos internetga ulanishni tekshiring!
+        </p>
+    </div>
+
+    <!-- Kontent -->
+    <div class="content">
+        <h1>Saytingizga xush kelibsiz!</h1>
+        <p>Bu yerda saytingizning boshqa kontenti ko'rsatiladi.</p>
+    </div>
+</body>
+</html>
